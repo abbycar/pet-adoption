@@ -6,6 +6,7 @@
     <mat-card
       class='dogs__card'
       *ngFor='let dog of dogs'
+      [routerLink]="['/details', dog.name]"
     >
       <img mat-card-image src='{{dog.imgPath}}' alt='image of {{dog.name}}' />
       <mat-card-title class='mdc-typography--headline6'>
@@ -23,7 +24,7 @@
         >
           <mat-icon
             class='dog__card__favorite'
-            (click)="dog.favorite=!dog.favorite"
+            (click)="dog.favorite=!dog.favorite;$event.stopPropogation()"
           >
             favorite
           </mat-icon>
@@ -35,7 +36,7 @@
         >
           <mat-icon
             class='dog__card__favorite'
-            (click)="dog.favorite=!dog.favorite"
+            (click)="dog.favorite=!dog.favorite;$event.stopPropagation()"
           >
             favorite_border
           </mat-icon>
