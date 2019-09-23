@@ -1,0 +1,40 @@
+<div class='details__container'>
+    <div class='details__media'>
+      <img src='{{dog.imgPath}}' alt='image of {{dog.name}}'/>
+    </div>
+    <div class='details__text'>
+      <h1 class='mdc-typography--headline2'>
+        {{dog.name}}
+      </h1>
+      <p>
+        {{dog.nickname | titlecase}}
+      </p>
+  
+      <h5 class='mdc-typography--overline'>
+        AGE
+      </h5>
+      <p class='mdc-typography--body2'>
+        {{dog.age}}
+      </p>
+  
+      <h5 class='mdc-typography--overline'>
+        WEIGHT
+      </h5>
+      <p class='mdc-typography--body2'>
+        {{dog.weight}} pounds
+      </p>
+  
+      <h5 class='mdc-typography--overline'>
+        About {{dog.name}}
+      </h5>
+      <p class='mdc-typography--body2'>
+        {{dog.description}}
+      </p>
+      <mat-chip-list class='details--breeds'>
+        <mat-chip *ngFor="let breed of dog.breeds">
+          {{breed | titlecase}}
+        </mat-chip>
+      </mat-chip-list>
+    </div>
+  </div>
+
