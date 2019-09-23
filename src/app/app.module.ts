@@ -18,6 +18,7 @@ import { DetailsComponent } from './details/details.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DogsComponent } from './dogs/dogs.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
