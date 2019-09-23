@@ -16,13 +16,15 @@ import { LoginComponent } from './login/login.component';
 import { NewDogComponent } from './new-dog/new-dog.component';
 import { DetailsComponent } from './details/details.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DogsComponent } from './dogs/dogs.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     NewDogComponent,
-    DetailsComponent
+    DetailsComponent,
+    DogsComponent
   ],
   imports: [
     BrowserModule,
