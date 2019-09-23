@@ -1,0 +1,54 @@
+<h1>Submit a dog!</h1>
+
+<form [formGroup]="newDogForm">
+  <div>
+    <label for="name">
+      Name
+    </label>
+    <input id="name" type="text" formControlName="name">
+  </div>
+
+  <div>
+    <label for="nickname">
+      Nickname
+    </label>
+    <input id="nickname" type="text" formControlName="nickname">
+  </div>
+
+  <div>
+    <label for="description">
+      Description
+    </label>
+    <input id="description" type="text" formControlName="description">
+  </div>
+
+  <div>
+    <label for="imgPath">
+      Image URL
+    </label>
+    <input id="imgPath" type="text" formControlName="imgPath">
+  </div>
+
+  <div>
+    <label for="breeds">
+      Breed(s)
+    </label>
+    <input id="breeds" type="text" formControlName="breeds">
+  </div>
+
+  <div>
+    <label for="weight">
+      Weight
+    </label>
+    <input id="weight" type="number" formControlName="weight">
+  </div>
+
+  <div>
+    <label for="age">
+      Age
+    </label>
+    <input id="age" type="number" formControlName="age">
+  </div>
+  <button (click)='submitDog()'>Submit dog</button>
+</form>
+
