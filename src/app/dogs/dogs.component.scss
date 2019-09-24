@@ -1,0 +1,15 @@
+.dogs__container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-column-gap: 8px;
+    grid-row-gap: 16px;
+  }
+  
+  .dog__card__favorite {
+    fill: red;
+    -webkit-text-fill-color: red;
+  }
+  
+  .dogs__headline {
+    margin-bottom: 16px;
+  }

@@ -1,0 +1,46 @@
+<h1 class='dogs__headline mdc-typography--headline2'>
+    Featured pets
+  </h1>
+  
+  <div class='dogs__container'>
+    <mat-card
+      class='dogs__card'
+      *ngFor='let dog of dogs'
+      [routerLink]="['/details', dog.name]"
+    >
+      <img mat-card-image src='{{dog.imgPath}}' alt='image of {{dog.name}}' />
+      <mat-card-title class='mdc-typography--headline6'>
+        {{dog.name}}
+      </mat-card-title>
+      <mat-card-subtitle>
+        {{dog.nickname}}
+      </mat-card-subtitle>
+  
+      <mat-card-actions>
+        <button
+          mat-icon-button
+          aria-label="Example icon-button with a heart icon"
+          *ngIf="dog.favorite"
+        >
+          <mat-icon
+            class='dog__card__favorite'
+            (click)="dog.favorite=!dog.favorite;$event.stopPropogation()"
+          >
+            favorite
+          </mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          aria-label="Example icon-button with a heart icon"
+          *ngIf="!dog.favorite"
+        >
+          <mat-icon
+            class='dog__card__favorite'
+            (click)="dog.favorite=!dog.favorite;$event.stopPropagation()"
+          >
+            favorite_border
+          </mat-icon>
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>

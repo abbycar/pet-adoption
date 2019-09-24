@@ -1,6 +1,6 @@
 <h1>Submit a dog!</h1>
 
-<form [formGroup]="newDogForm">
+<form [formGroup]="newDogForm" (ngSubmit)='submitDog()'>
   <div>
     <label for="name">
       Name
@@ -49,6 +49,6 @@
     </label>
     <input id="age" type="number" formControlName="age">
   </div>
-  <button (click)='submitDog()'>Submit dog</button>
+  <button type="submit">Submit dog</button>
 </form>
 
