@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DogList, Dog} from '../dogs'
+import { Dog} from '../dogs';
+import { DogService } from '../services/dogs-service';
 
 @Component({
   selector: 'app-dogs',
@@ -9,21 +10,31 @@ import { DogList, Dog} from '../dogs'
 export class DogsComponent implements OnInit {
 
   searchValue = '';
-  dogs = DogList.data;
+  dogs = [];
   breeds = [];
   filteredBreed;
+  allDogs = [];
 
-  constructor() {}
+
+
+  constructor(private readonly dogsService: DogService) {
+
+  }
 
   ngOnInit() {
     this.setBreeds();
+    this.dogsService.getDogs().then(dogs => {
+      this.dogs = dogs
+      this.allDogs = dogs;
+      this.setBreeds();
+    });
   }
 
   setBreeds() {
     const breedSet = new Set();
     this.dogs.forEach(dog => {
       dog.breeds.forEach(breed => {
-        breedSet.add(breed);
+        breedSet.add(breed.toLowerCase());
       });
     });
 
@@ -34,13 +45,13 @@ export class DogsComponent implements OnInit {
     const lowerSearch = this.searchValue.toLowerCase();
     const lowerFilteredBreed = this.filteredBreed && this.filteredBreed.toLowerCase();
 
-    this.dogs = DogList.data.filter(dog => {
+    this.dogs = this.allDogs.filter(dog => {
       if (!this.searchValue && !this.filteredBreed) return true;
 
       const matchesName = dog.name.toLowerCase().includes(lowerSearch);
       const matchesNickname = dog.nickname.toLowerCase().includes(lowerSearch);
       const matchesDescription = dog.description.toLowerCase().includes(lowerSearch);
-      const matchesBreed = !this.filteredBreed && dog.breeds.some(breed => breed.includes(lowerSearch) && !!lowerSearch);
+      const matchesBreed = !this.filteredBreed && dog.breeds.some(breed => breed.toLowerCase().includes(lowerSearch) && !!lowerSearch);
       const isTextMatch = (matchesBreed && matchesName || matchesNickname || matchesDescription) && lowerSearch.length;
 
       const onlyBreed = dog.breeds.includes(lowerFilteredBreed);
