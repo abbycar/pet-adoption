@@ -43,7 +43,7 @@
     <mat-card
       class='dogs__card'
       *ngFor='let dog of dogs'
-      [routerLink]="['/details', dog.name]"
+      [routerLink]="['/details', dog.id]"
     >
       <img mat-card-image src='{{dog.imgPath}}' alt='image of {{dog.name}}' />
       <mat-card-title class='mdc-typography--headline6'>

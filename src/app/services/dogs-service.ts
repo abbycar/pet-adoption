@@ -12,7 +12,23 @@ export class DogService {
 
   getDogs() {
     return this.db.collection("dogs").get().then(querySnapshot => {
-      return querySnapshot.docs.map(doc => doc.data() );
+      return querySnapshot.docs.map(doc => {
+          console.log({
+            id: doc.id, ...doc.data()
+          });
+          return {
+            id: doc.id, ...doc.data()
+          };
+        });
       });
     };
+
+  getDogById(id) {
+    let docRef = this.db.collection("dogs").doc(id);  
+    return docRef.get().then(doc => {
+      console.log(doc.id);
+      console.log(doc.data);
+      return doc.data();
+    });
+  };
 }

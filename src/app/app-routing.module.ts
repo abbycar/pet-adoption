@@ -8,7 +8,7 @@ import { DogsComponent } from './dogs/dogs.component';
 const routes: Routes = [
   { path: '', component: DogsComponent},
   { path: 'new-dog', component: NewDogComponent},
-  { path: 'details/:name', component: DetailsComponent},
+  { path: 'details/:id', component: DetailsComponent},
   { path: 'login', component: LoginComponent}, 
 ];
 

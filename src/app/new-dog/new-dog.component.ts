@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { DogList } from '../dogs';
+import { DogService } from '../services/dogs-service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -12,7 +13,7 @@ export class NewDogComponent implements OnInit {
     
   newDogForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private router: Router) { 
+  constructor(private formBuilder: FormBuilder, private router: Router, private readonly dogService: DogService) { 
     this.newDogForm = this.formBuilder.group({
       name: '',
       nickname: '',
@@ -29,9 +30,12 @@ export class NewDogComponent implements OnInit {
 
   submitDog() {
     this.newDogForm.value.breeds = this.newDogForm.value.breeds.split(',');
-    DogList.data.push(this.newDogForm.value);
-    console.log("dog added");
-    this.router.navigate(['/', 'details', this.newDogForm.value.name]);
-  }
+    this.dogService.db.collection("dogs").add({
+      ...this.newDogForm.value
+    })
+    .then(docRef => {
+      this.router.navigate(['/', 'details', docRef.id]);
+    });
 
+    }
 }

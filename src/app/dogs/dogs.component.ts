@@ -24,7 +24,7 @@ export class DogsComponent implements OnInit {
   ngOnInit() {
     this.setBreeds();
     this.dogsService.getDogs().then(dogs => {
-      this.dogs = dogs
+      this.dogs = dogs;
       this.allDogs = dogs;
       this.setBreeds();
     });
