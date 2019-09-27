@@ -1,13 +1,21 @@
-<button mat-button [routerLink]= "['']">Home</button>
-<button mat-button [routerLink]= "['/','new-dog']">Add a dog</button>
+<div id='nav' style="float:left">
+    <button mat-button [routerLink]= "['']">Home</button>
+    <button mat-button [routerLink]= "['/','new-dog']">Add a dog</button>
+    
+    <button *ngIf='!authStateObserver' mat-button (click)='authService.signAction()'>
+      <div *ngIf='!authService.loggedIn'>Sign in</div>
+      <div *ngIf='authService.loggedIn'>Sign out</div>
+    </button>
+</div>
 
-<button *ngIf='!authStateObserver' mat-button (click)='authService.signAction()'>
-  <div *ngIf='!authService.loggedIn'>Sign in</div>
-  <div *ngIf='authService.loggedIn'>Sign out</div>
-</button>
-<div>{{authService.userName}}</div>
+<div id='user' style="float:right">
+    <div>{{authService.userName}}</div>
+    <img *ngIf='authService.loggedIn' id='user-pic' src="{{authService.profilePicture}}" alt="Me" height="42" width="42">
+</div>
+
+
+
 
 <div class='dog-adoption__body'>
   <router-outlet></router-outlet>
 </div>
-
