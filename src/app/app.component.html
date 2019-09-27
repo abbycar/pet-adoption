@@ -1,5 +1,10 @@
-<button [routerLink]= "['']">Home</button>
-<button [routerLink]= "['/','new-dog']">Add a dog</button>
+<button mat-button [routerLink]= "['']">Home</button>
+<button mat-button [routerLink]= "['/','new-dog']">Add a dog</button>
+
+<button *ngIf='authService' mat-button (click)='authService.signIn()'>
+  Sign in
+</button>
+
 <div class='dog-adoption__body'>
   <router-outlet></router-outlet>
 </div>
