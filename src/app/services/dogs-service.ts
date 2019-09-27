@@ -10,7 +10,7 @@ export class DogService {
   constructor() { 
   }
 
-  getDogs() {
+  getDogs(): Promise<any> {
     return this.db.collection("dogs").get().then(querySnapshot => {
       return querySnapshot.docs.map(doc => {
           console.log({
@@ -31,4 +31,6 @@ export class DogService {
       return doc.data();
     });
   };
+
+
 }

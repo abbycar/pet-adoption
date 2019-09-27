@@ -61,7 +61,7 @@
         >
           <mat-icon
             class='dog__card__favorite'
-            (click)="dog.favorite=!dog.favorite;$event.stopPropogation()"
+            (click)="toggleFavorite(dog);$event.stopPropagation()"
           >
             favorite
           </mat-icon>
@@ -73,7 +73,7 @@
         >
           <mat-icon
             class='dog__card__favorite'
-            (click)="dog.favorite=!dog.favorite;$event.stopPropagation()"
+            (click)="toggleFavorite(dog);$event.stopPropagation()"
           >
             favorite_border
           </mat-icon>

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from './services/auth-service';
+import { UserService } from './services/user-service';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,7 @@ import { AuthService } from './services/auth-service';
 export class AppComponent {
   title = 'pet-adoption';
 
-  constructor(private readonly authService: AuthService) { 
+  constructor(private readonly authService: AuthService, private readonly userService: UserService) { 
     
   }
 

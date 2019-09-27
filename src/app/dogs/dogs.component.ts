@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Dog} from '../dogs';
 import { DogService } from '../services/dogs-service';
+import { UserService } from '../services/user-service';
 
 @Component({
   selector: 'app-dogs',
@@ -17,13 +18,16 @@ export class DogsComponent implements OnInit {
 
 
 
-  constructor(private readonly dogsService: DogService) {
+  constructor(private readonly dogsService: DogService, private readonly userService: UserService) {
 
   }
 
   ngOnInit() {
     this.setBreeds();
     this.dogsService.getDogs().then(dogs => {
+      dogs.forEach( async (dog)=> {
+        dog.favorite = await this.userService.isFavorite(this.userService.getUser(), dog.id);
+      })
       this.dogs = dogs;
       this.allDogs = dogs;
       this.setBreeds();
@@ -86,6 +90,11 @@ export class DogsComponent implements OnInit {
     event.stopPropagation();
     const dog = this.dogs.find(dog => dog.name === name);
     dog.favorite = false;
+  }
+
+  toggleFavorite(dog) {
+    dog.favorite = !dog.favorite;
+    this.userService.setFavorite(dog.id, dog.favorite);
   }
 
 }

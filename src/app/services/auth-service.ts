@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as firebase from "firebase";
+import { UserService } from './user-service';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +12,7 @@ export class AuthService {
   profilePicture = '';
   
 
-  constructor() { 
+  constructor(private readonly userService: UserService) { 
     this.initFirebaseAuth();
     
   }
@@ -31,9 +32,10 @@ export class AuthService {
         
         let provider = new firebase.auth.GoogleAuthProvider();
         
-        firebase.auth().signInWithPopup(provider);
-        //console.log(this.getUserName());
-
+        firebase.auth().signInWithPopup(provider).then((userCred) => {
+            let id = userCred.user.uid;
+            this.userService.addUser(id);
+        }) 
 
     }
 
@@ -61,7 +63,7 @@ export class AuthService {
       this.profilePicture = this.getProfilePicUrl();
       console.log(this.userName);
       //document.getElementById('user-pic').removeAttribute('hidden');
-      
+
       this.loggedIn = true;
     } else {
         this.userName = '';
@@ -79,6 +81,8 @@ export class AuthService {
     getUserName() {
       return firebase.auth().currentUser.displayName;
     }
+
+    
 
 }
 
